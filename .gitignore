@@ -1,0 +1,54 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+*.pyo
+
+examples/
+
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# Distribution / Build directories
+build/
+dist/
+*.egg-info/
+
+# pytest cache
+.pytest_cache/
+
+# IDE-specific files
+.vscode/
+.idea/
+*.iml
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Temporary files and folders
+*.tmp
+*.swp
+*.swo
+*.bak
+*.orig
+
+# Coverage reports
+.coverage
+coverage.xml
+htmlcov/
+
+# Linting reports
+pylint.log
+
+# Requirements (if auto-generated, e.g., `pip freeze > requirements.txt`)
+# Remove this comment if you generate requirements.txt manually
+# requirements.txt

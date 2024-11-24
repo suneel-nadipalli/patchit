@@ -1,0 +1,36 @@
+name: Publish to PyPI
+
+on:
+  push:
+    # branches:
+    #   - main
+    tags:
+      - "v*"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: pip install build twine
+
+      - name: Clean old build artifacts
+        run: rm -rf dist/ build/ *.egg-info/
+
+      - name: Build package
+        run: python -m build
+
+      - name: Publish to PyPI
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }} # Use '__token__'
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }} # Use the API token
+        run: twine upload dist/*
