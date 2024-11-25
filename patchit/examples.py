@@ -58,7 +58,7 @@ models_dict = {
                         transforms.ToTensor(),
                         transforms.Resize((64, 64))
                     ]),
-        "data_dir": f"{BASE_DATA_DIR}/intel/seg_train/seg_train",
+        "data_dir": f"{BASE_DATA_DIR}/intel",
         "model_weights": f"{BASE_MODELS_DIR}/intel-class.pth",
 
     },
