@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.0] - 2024-11-25
+
+### Removed data_dir and custom_weights from get_sample_model
+
+- Removed data_dir and custom_weights from get_sample_model
+
 ## [1.0.8] - 2024-11-25
 
 ### Removing sample datasets

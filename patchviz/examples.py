@@ -60,8 +60,6 @@ models_dict = {
                         transforms.ToTensor(),
                         transforms.Resize((64, 64))
                     ]),
-        "data_dir": os.path.join(BASE_DATA_DIR, "intel"),
-        "model_weights": os.path.join(BASE_MODELS_DIR, "intel-class.pth"),
     },
     "emotions": {
         "model": models.resnet18(pretrained=True),
@@ -71,12 +69,10 @@ models_dict = {
                         transforms.Resize((224, 224)),
                         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
                     ]),
-        "data_dir": os.path.join(BASE_DATA_DIR, "emot"),
-        "model_weights": os.path.join(BASE_MODELS_DIR, "emot-class-v2.pth"),
     }
 }
 
 def get_sample_model(key):
     model_dict = models_dict[key]
 
-    return model_dict["model"], model_dict["num_classes"], model_dict["transform"], model_dict["data_dir"], model_dict["model_weights"]
+    return model_dict["model"], model_dict["num_classes"], model_dict["transform"]
