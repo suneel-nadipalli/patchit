@@ -79,7 +79,12 @@ loader.plot_sample_batch()
 
 Output
 
-[Intel Sample Batch Output]
+```python
+Batch size: 16
+tensor([2, 0, 1, 2, 2, 2, 2, 2, 4, 0, 4, 1, 0, 0, 0, 5])
+```
+
+![Intel Sample Batch Output](misc/batch.png)
 
 ```python
 # Step 2: Load in CNN Model (Custom Weights/Pretrained Model)

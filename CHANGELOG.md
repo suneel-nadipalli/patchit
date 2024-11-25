@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.1] - 2024-11-25
+
+### Minor changes to README.md
+
+- Minor changes to README.md
+
 ## [1.1.0] - 2024-11-25
 
 ### Updated README.md
