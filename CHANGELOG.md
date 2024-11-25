@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.5] - 2024-11-25
+
+### Attempting to add intel-class.pth
+
+- Attempting to add intel-class.pth
+
 ## [1.0.4] - 2024-11-25
 
 ### Lowered Python version to 3.10
