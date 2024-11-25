@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.8] - 2024-11-25
+
+### Removing sample datasets
+
+- Removing sample datasets
+
+- Ask users to download themselves
+
 ## [1.0.7] - 2024-11-25
 
 ### Fixing samples path error
