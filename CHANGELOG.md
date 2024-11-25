@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.4] - 2024-11-25
+
+### Lowered Python version to 3.10
+
+- Lowered Python version to 3.10
+
 ## [1.0.3] - 2024-11-25
 
 ### Added examples and test folders
