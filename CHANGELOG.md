@@ -1,10 +1,16 @@
 # Changelog
 
+## [1.0.3] - 2024-11-25
+
+### Added examples and test folders
+
+- Added examples and test folders
+
 ## [1.0.2] - 2024-11-25
 
 ### Package Name Further Fixes
 
-- Reflected change in package name 
+- Reflected change in package name
 
 ## [1.0.1] - 2024-11-25
 
