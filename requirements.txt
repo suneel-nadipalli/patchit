@@ -1,2 +1,7 @@
+torch
+torchvision
+torchaudio
+numpy
 matplotlib
+captum
 tqdm

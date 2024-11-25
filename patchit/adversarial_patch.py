@@ -5,7 +5,7 @@ from tqdm import tqdm
 import numpy as np
 
 class AdversarialPatch:
-    def __init__(self, model, class_labels, loader, num_channels=3, device="cpu"):
+    def __init__(self, model, loader, num_channels=3, device="cpu"):
         """
         Initialize the adversarial patch.
         
@@ -15,10 +15,10 @@ class AdversarialPatch:
         """
         self.num_channels = num_channels
         self.device = device
-        self.model = model.to(self.device)
-        self.class_labels = class_labels
+        self.model = model
         self.dataset = loader.dataset
         self.dataloader = loader.dataloader
+        self.class_to_idx = loader.class_to_idx
         
         # Initialize patch tensor (random values between 0 and 1)
 
@@ -53,7 +53,7 @@ class AdversarialPatch:
         Returns:
             img: The batch of images with the patch placed on random locations.
         """
-
+    
         for i in range(img.shape[0]):
             h_offset = np.random.randint(0,img.shape[2]-patch.shape[1]-1)
             w_offset = np.random.randint(0,img.shape[3]-patch.shape[2]-1)
@@ -145,7 +145,7 @@ class AdversarialPatch:
 
         return patch.data, {"acc": acc.item(), "top5": top5.item()}
 
-    def get_patches(self, class_names, patch_sizes, num_classes=None):
+    def get_patches(self, class_names, patch_sizes, num_classes=None, num_epochs=5):
 
         """
         Gets or trains patches for a given list of class names and patch sizes.
@@ -161,27 +161,34 @@ class AdversarialPatch:
         result_dict = dict()
 
         if class_names is None:
-            class_names = random.sample(self.class_labels, num_classes)
+            if num_classes is None:
+                raise ValueError("Either class_names or num_classes must be provided.")
+            
+            class_names = random.sample(self.class_to_idx.keys(), num_classes)
+
+            print(f"Randomly selected classes: {class_names}")
 
         # Loop over all classes and patch sizes
         for name in class_names:
+            if name not in self.class_to_idx:
+                raise ValueError(f"Class name '{name}' not found in class_to_idx.")
             result_dict[name] = dict()
             for patch_size in patch_sizes:
     
                 patch_size = patch_size if isinstance(patch_size, tuple) else (patch_size, patch_size)
     
-                c = self.class_labels.index(name)
+                c = self.class_to_idx[name]
 
                 # print(c)
     
-                patch, val_results = self.train_patch(target_class=c, patch_size=patch_size, num_epochs=5)
+                patch, val_results = self.train_patch(target_class=c, patch_size=patch_size, num_epochs=num_epochs)
     
                 print(f"Validation results for {name} and {patch_size}:", val_results)
 
                 results = self.eval_patch(patch, target_class=c)
 
                 # Store results and the patches in a dict for better access
-                result_dict[name][patch_size] = {
+                result_dict[name][patch_size[0]] = {
                     "results": results,
                     "patch": patch
                 }

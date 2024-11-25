@@ -11,11 +11,13 @@ setup(
     url="https://github.com/suneel-nadipalli/patchit",  # GitHub repo URL
     packages=find_packages(),  # Automatically find all sub-packages
     install_requires=[
-        "transformers>=4.0.0",
-        "torch>=1.9.0",
-        "numpy>=1.19.0",
-        "scikit-learn>=0.24.0",
-        "plotly>=5.0.0",
+        "torch",
+        "torchvision",
+        "torchaudio",
+        "numpy",
+        "matplotlib",
+        "captum",
+        "tqdm",
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
