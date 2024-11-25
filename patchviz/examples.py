@@ -2,9 +2,7 @@ import torch.nn as nn
 from torchvision import models
 import torchvision.transforms as transforms
 
-import sys
-
-# sys.path.append("../patchit/")
+import os
 
 class IntelCNN(nn.Module):
     def __init__(self):
@@ -46,9 +44,13 @@ class IntelCNN(nn.Module):
         output = self.model(image)
         return output
 
-BASE_DATA_DIR = "../patchit/samples/data"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+SAMPLES_DIR = os.path.join(BASE_DIR, "samples")
 
-BASE_MODELS_DIR = "../patchit/samples/models"
+# Define paths relative to the module's base directory
+BASE_DATA_DIR = os.path.join(SAMPLES_DIR, "data")
+BASE_MODELS_DIR = os.path.join(SAMPLES_DIR, "models")
+
 
 models_dict = {
     "intel": {
@@ -58,9 +60,8 @@ models_dict = {
                         transforms.ToTensor(),
                         transforms.Resize((64, 64))
                     ]),
-        "data_dir": f"{BASE_DATA_DIR}/intel",
-        "model_weights": f"{BASE_MODELS_DIR}/intel-class.pth",
-
+        "data_dir": os.path.join(BASE_DATA_DIR, "intel"),
+        "model_weights": os.path.join(BASE_MODELS_DIR, "intel-class.pth"),
     },
     "emotions": {
         "model": models.resnet18(pretrained=True),
@@ -70,8 +71,8 @@ models_dict = {
                         transforms.Resize((224, 224)),
                         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
                     ]),
-        "data_dir": f"{BASE_DATA_DIR}/emot",
-        "model_weights": f"{BASE_MODELS_DIR}/emot-class-v2.pth",
+        "data_dir": os.path.join(BASE_DATA_DIR, "emot"),
+        "model_weights": os.path.join(BASE_MODELS_DIR, "emot-class-v2.pth"),
     }
 }
 

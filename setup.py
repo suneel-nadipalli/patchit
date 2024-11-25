@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="patchviz",  # Your package name
-    version="1.0.5",  # Package version
+    version="1.0.6",  # Package version
     description="Patch Viz: A library to test how well your model holds up against adversarial attacks",  # Short description
     long_description=open("README.md").read(),  # Use README.md for detailed description
     long_description_content_type="text/markdown",
@@ -10,6 +10,13 @@ setup(
     author_email="nsuneel89@gmail.com",  # Replace with your email
     url="https://github.com/suneel-nadipalli/patchviz",  # GitHub repo URL
     packages=find_packages(),  # Automatically find all sub-packages
+    include_package_data=True,
+    package_data={
+        "patchviz": [
+            "samples/data/*/*",  # Include all dataset files
+            "samples/models/*",  # Include all model files
+        ]
+    },
     install_requires=[
         "torch",
         "torchvision",

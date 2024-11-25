@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.6] - 2024-11-25
+
+### Successfully added intel-class.pth and fixing samples path error
+
+- Successfully added intel-class.pth and fixing samples path error
+
 ## [1.0.5] - 2024-11-25
 
 ### Attempting to add intel-class.pth
